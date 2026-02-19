@@ -31,12 +31,15 @@ pub struct EnforceTransferPolicyOp<'info> {
     )]
     pub destination_token: InterfaceAccount<'info, TokenAccount>,
 
+    /// CHECK: Used only as authority key for token account constraint checks.
     pub owner: UncheckedAccount<'info>,
 
     #[account(
         seeds = [b"extra-account-metas", mint.key().as_ref()],
         bump,
     )]
+    /// CHECK: PDA is constrained by seeds+bump and read by token-2022 hook
+    /// validation flow.
     pub extra_account_meta_list: UncheckedAccount<'info>,
 
     #[account(

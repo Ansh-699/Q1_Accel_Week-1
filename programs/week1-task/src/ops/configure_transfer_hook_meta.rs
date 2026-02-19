@@ -20,6 +20,8 @@ pub struct ConfigureTransferHookMetaOp<'info> {
         ).unwrap(),
         payer = payer,
     )]
+    /// CHECK: Account is created at the canonical PDA derived from `mint` and
+    /// initialized via `ExtraAccountMetaList::init` in this instruction.
     pub extra_account_meta_list: AccountInfo<'info>,
 
     pub mint: InterfaceAccount<'info, Mint>,
